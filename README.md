@@ -18,27 +18,6 @@ I wanted to solve the problem of scattered sports data. My goal was to see if I 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
-📁 **Project Structure**
-
-ScoreSync/
-├── index.html              # Main entry point; contains global layout and nav
-├── README.md               # Documentation, installation guides, and overview
-├── assets/                 # Central folder for all static and shared resources
-│   ├── css/                # Global and modular stylesheets
-│   │   ├── base.css        # Resets, variables (colors, fonts), and core typography
-│   │   └── ...             # Other CSS files
-│   ├── js/                 # Application logic and scripts
-│   │   ├── app.js          # Core router; manages view switching and history
-│   │   ├── compare.js      # Analytics engine logic and Chart.js integration
-│   │   └── ...             # Other JS files
-│   └── image/              # High-resolution local branded assets
-└── views/                  # Modular HTML page components
-    ├── home.html           # Hero section and trending sports content
-    ├── compare.html        # Head-to-Head analytics dashboard
-    └──                     # Other view files
-
----------------------------------------------------------------------------------------------------------------------------------------------
-
 🔵 **Project Demo**
 You can see a walkthrough of my current build and how I approached the UI layout here: 
 
