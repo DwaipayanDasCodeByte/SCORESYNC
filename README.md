@@ -62,3 +62,4 @@ Since this is an early-stage prototype, I have identified several key areas wher
   ➡️**Design & Demo:** Clipchamp (Video) & YouTube
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
+Note: This prototype is currently optimized for Desktop Viewing (1920x1080) to provide the best experience for complex data visualization. Mobile responsiveness is planned for a future update.
