@@ -1,0 +1,29 @@
+<div class="container seats-container">
+    <div class="grid-card">
+        <div class="screen-indicator"></div>
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot available"></div> Available</div>
+            <div class="legend-item"><div class="legend-dot selected"></div> Selected</div>
+            <div class="legend-item"><div class="legend-dot booked"></div> Sold Out</div>
+        </div>
+        <div class="seat-grid" id="seatGrid"></div>
+        <div class="stats-bar">
+            <div class="stat-item"><span class="stat-val" id="statBooked">0</span><span class="stat-lbl">Booked</span></div>
+            <div class="stat-item"><span class="stat-val" id="statLeft">0</span><span class="stat-lbl">Left</span></div>
+            <div class="stat-item"><span class="stat-val">100</span><span class="stat-lbl">Capacity</span></div>
+        </div>
+    </div>
+    <aside>
+        <div class="sidebar-card">
+            <h2 id="seatViewTitle" class="match-name-display">Match Name</h2>
+            <p id="seatViewVenue" class="venue-display">Stadium Venue</p>
+            <div class="selection-summary">
+                <div class="summary-line"><span>Selected Seats</span><span id="selectedSeatsCount">0</span></div>
+                <div id="selectedSeatsList" class="seats-badges"></div>
+                <div class="summary-line subtotal"><span>Subtotal</span><span id="seatSubtotal">$0</span></div>
+            </div>
+            <button type="button" class="btn-primary full-width" id="btn-confirm-seats">Confirm Seats</button>
+            <button type="button" class="btn-secondary full-width" id="btn-cancel-seats">Cancel</button>
+        </div>
+    </aside>
+</div>

@@ -1,0 +1,61 @@
+<div class="container checkout-container">
+    <div class="payment-card">
+        <h2 class="checkout-title">Secure Checkout</h2>
+        <p class="subtitle">Choose your preferred payment method.</p>
+
+        <div id="ticketRedemptionUI" class="redemption-panel" style="display:none;">
+            <div>
+                <span class="pts-available" id="checkoutFanPointsText">0 Fan Points</span>
+                <p style="font-size:0.7rem; color:var(--text-secondary);">Redeem for $5.00 off</p>
+            </div>
+            <button class="btn-outline" style="padding: 5px 15px; font-size: 0.7rem;" id="btn-redeem-ticket" onclick="handleTicketRedeem()">Redeem</button>
+        </div>
+
+        <div class="payment-methods" id="paymentMethodsList">
+            <div class="method-option" data-method="upi" onclick="selectPayment('upi', this)">
+                <div class="method-icon">⚡</div><span class="method-label">UPI</span>
+            </div>
+            <div class="method-option" data-method="card" onclick="selectPayment('card', this)">
+                <div class="method-icon">💳</div><span class="method-label">Card</span>
+            </div>
+            <div class="method-option" data-method="netbank" onclick="selectPayment('netbank', this)">
+                <div class="method-icon">🏦</div><span class="method-label">Net Banking</span>
+            </div>
+        </div>
+
+        <div id="form-upi" class="payment-form active">
+            <div class="form-group">
+                <label>UPI ID (VPA)</label>
+                <input type="text" placeholder="username@upi">
+            </div>
+        </div>
+        
+        <div id="form-card" class="payment-form">
+            <div class="card-type-selector">
+                <button type="button" class="card-type-btn active" id="card-credit-btn" onclick="selectCardType('Credit', this)">💳 Credit Card</button>
+                <button type="button" class="card-type-btn" id="card-debit-btn" onclick="selectCardType('Debit', this)">💸 Debit Card</button>
+            </div>
+            <div class="form-group"><label>Card Number</label><input type="text" placeholder="XXXX XXXX XXXX XXXX"></div>
+            <div class="form-row-2">
+                <div class="form-group"><label>Expiry</label><input type="text" placeholder="MM/YY"></div>
+                <div class="form-group"><label>CVV</label><input type="password" placeholder="***"></div>
+            </div>
+        </div>
+        
+        <div id="form-netbank" class="payment-form">
+            <div class="form-group">
+                <label>Select Bank</label>
+                <select>
+                    <option>HDFC Bank</option>
+                    <option>ICICI Bank</option>
+                    <option>SBI</option>
+                    <option>Axis Bank</option>
+                </select>
+            </div>
+        </div>
+        
+        <button type="button" class="btn-primary full-width" id="btn-complete-purchase" onclick="processPayment()">Complete Purchase</button>
+    </div>
+    
+    <div class="order-summary" id="checkoutSummary"></div>
+</div>

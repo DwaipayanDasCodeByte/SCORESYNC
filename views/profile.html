@@ -1,0 +1,69 @@
+<div class="container profile-container">
+    <aside class="profile-card">
+        <div class="avatar-wrap">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" id="userAvatar" class="profile-avatar" alt="Profile">
+            <label class="avatar-edit" for="avatarUpload">📸</label>
+            <input type="file" id="avatarUpload" hidden accept="image/*">
+        </div>
+        <h2 class="profile-name" id="display-username">Alex Thompson</h2>
+        <p class="profile-email" id="display-email">alex.t@example.com</p>
+        
+        <div class="points-detail-badge">
+            <span style="font-size:0.6rem; color:var(--text-secondary); text-transform:uppercase; font-weight:800;">Account Balance</span>
+            <span id="profileUserPoints" style="color:var(--accent); font-weight:800; font-size:1.5rem;">0</span>
+            <span style="font-size:0.6rem; color:var(--text-secondary); font-weight:600;">Fan Points</span>
+        </div>
+
+        <button type="button" class="btn-outline full-width" onclick="handleLogout()">Sign Out</button>
+    </aside>
+
+    <main class="profile-main">
+        <div class="profile-section">
+            <h3>My Bookings</h3>
+            <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">Your recent ticket purchases and digital receipts.</p>
+            <div id="bookingsList" class="bookings-list">
+                </div>
+        </div>
+
+        <div class="profile-section">
+            <h3>Favorite Sports</h3>
+            <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:15px;">You will receive real-time updates for these categories.</p>
+            <div class="fav-grid" id="favoritesGrid">
+                </div>
+        </div>
+        
+        <div id="security-area" style="display:none; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 30px;">
+            <h3 style="margin-bottom: 20px;">Account Security</h3>
+            
+            <div class="security-grid">
+                <div class="security-card">
+                    <h4>Account Recovery</h4>
+                    <p style="color:var(--text-secondary); font-size:0.8rem; margin-bottom:15px;">Add a mobile number to recover access if you forget your password.</p>
+                    <form id="mobile-form">
+                        <div class="form-group">
+                            <label style="font-size: 0.75rem;">Mobile Number</label>
+                            <input type="tel" id="profile-mobile" placeholder="+1 234 567 8900" style="width:100%;">
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%; font-size:0.85rem;">Save Number</button>
+                    </form>
+                </div>
+
+                <div class="security-card">
+                    <h4>Change Password</h4>
+                    <p style="color:var(--text-secondary); font-size:0.8rem; margin-bottom:15px;">Update your credentials securely.</p>
+                    <form id="password-form">
+                        <div class="form-group">
+                            <label style="font-size: 0.75rem;">Current Password</label>
+                            <input type="password" placeholder="••••••••" required style="width:100%;">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 0.75rem;">New Password</label>
+                            <input type="password" placeholder="••••••••" required style="width:100%;">
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%; font-size:0.85rem;">Update Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

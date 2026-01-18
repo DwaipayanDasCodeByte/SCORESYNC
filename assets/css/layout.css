@@ -1,0 +1,52 @@
+/* ==========================================
+    NAVBAR
+   ========================================== */
+.navbar {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar-inner { display: flex; width: 100%; align-items: center; justify-content: space-between; }
+.logo { font-size: 1.7rem; font-weight: 800; letter-spacing: -1.5px; cursor: pointer; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-primary); font-weight: 600; font-size: 0.95rem; transition: var(--transition); opacity: 0.8; cursor: pointer; }
+.nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
+.controls { display: flex; align-items: center; gap: 15px; }
+
+/* ==========================================
+    VIEWS & LAYOUTS
+   ========================================== */
+.view { display: none; min-height: calc(100vh - 80px); }
+.view.active { display: block; animation: fadeIn 0.5s ease; }
+
+.ticket-layout { display: flex; gap: 40px; padding: 40px 0; }
+.sidebar { flex: 0 0 280px; position: sticky; top: 110px; height: fit-content; display: flex; flex-direction: column; gap: 20px; }
+
+.leagues-header { padding: 40px 0; border-bottom: 1px solid var(--border); margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
+.leagues-grid { display: grid; grid-template-columns: 300px 1fr; gap: 40px; }
+.standings-content { flex: 1; overflow: hidden; }
+
+.fanzone-layout { display: grid; grid-template-columns: 1fr 400px; gap: 40px; padding: 40px 0; }
+.seats-container { display: grid; grid-template-columns: 1fr 350px; gap: 40px; padding: 40px 0; }
+.checkout-container { padding: 40px 0; display: grid; grid-template-columns: 1fr 400px; gap: 40px; }
+.profile-container { display: grid; grid-template-columns: 350px 1fr; gap: 40px; padding: 60px 0; }
+
+/* ==========================================
+    RESPONSIVE MEDIA QUERIES
+   ========================================== */
+@media (max-width: 950px) {
+    .ticket-layout, .seats-container, .leagues-grid, .profile-container, .fanzone-layout { flex-direction: column; display: block; }
+    .checkout-container { grid-template-columns: 1fr; }
+    .sidebar, .profile-card { position: relative; top: 0; flex: 1; margin-bottom: 20px; width: 100%; }
+    .seat-grid { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+    .hero h1 { font-size: 2.5rem; }
+    .leagues-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .about-highlight-card { grid-template-columns: 1fr; padding: 40px; }
+    .about-title { font-size: 2rem; }
+}

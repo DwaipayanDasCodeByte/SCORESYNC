@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="leagues-header">
+        <div>
+            <h1 class="page-title">Fan Zone</h1>
+            <p class="subtitle">Engage, Predict, and Earn Rewards.</p>
+        </div>
+        <div class="live-status">
+            WIN DISCOUNTS <span class="live-tag">NEW</span>
+        </div>
+    </div>
+    
+    <div class="fanzone-layout">
+        <main>
+            <div id="superJackpotContainer" style="margin-bottom: 30px;"></div>
+
+            <h2 class="section-title">Match Polls</h2>
+            <div id="pollsContainer"></div>
+            
+            <h2 class="section-title" style="margin-top:40px;">Score Predictions</h2>
+            <div id="predictionsContainer"></div>
+        </main>
+        <aside>
+            <div class="sidebar-card centered" style="margin-bottom:20px; border-color: var(--accent);">
+                <h3>Your Points Balance</h3>
+                <div style="font-size:2rem; font-weight:800; color:var(--accent);" id="fanzoneUserPoints">0</div>
+                <p style="font-size:0.7rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Synced Account Balance</p>
+            </div>
+
+            <div class="sidebar-card" id="dailyTriviaWrapper">
+                <h3>Daily Trivia</h3>
+                <p style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:15px;">Answer correctly to win <b>50 Points</b>!</p>
+                <div id="dailyTriviaContainer">
+                    <div style="padding:10px; text-align:center; color:#64748b; font-size:0.8rem;">Loading today's question...</div>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Global Leaderboard</h3>
+                <p style="font-size:0.7rem; color:var(--text-secondary); margin-bottom:15px;">Updated every 10 minutes.</p>
+                <table class="leaderboard-table" id="leaderboardTable"></table>
+            </div>
+            
+            <div class="sidebar-card" style="margin-top:20px;">
+                <h3>Rewards Center</h3>
+                <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">Every <b>500 Points</b> = <b>$5 Discount</b> on any ticket or stream.</p>
+                <button class="btn-outline full-width" style="margin-top:15px; font-size:0.75rem;">View All Rewards</button>
+            </div>
+        </aside>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="container animate-in">
+    <div class="section-title" style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Head-to-Head <span style="color: var(--accent);">Analytics</span></h2>
+        <p style="color: var(--text-secondary);">Compare performance metrics across leagues and sports.</p>
+    </div>
+
+    <div class="sidebar-card" style="margin-bottom: 30px; border: 1px solid var(--accent);">
+        <div class="compare-controls-grid" style="display: grid; grid-template-columns: 1fr 100px 1fr; gap: 20px; align-items: center;">
+            
+            <div style="text-align: center;">
+                <div id="p1-avatar" style="width: 80px; height: 80px; background: rgba(255,255,255,0.1); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 2px solid #3b82f6;">🔵</div>
+                <select id="select-p1" class="compare-select" onchange="updateComparison()">
+                    <option>Loading...</option>
+                </select>
+            </div>
+
+            <div style="text-align: center;">
+                <div style="font-size: 1.5rem; font-weight: 800; background: #fff; color: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">VS</div>
+            </div>
+
+            <div style="text-align: center;">
+                <div id="p2-avatar" style="width: 80px; height: 80px; background: rgba(255,255,255,0.1); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 2px solid #ef4444;">🔴</div>
+                <select id="select-p2" class="compare-select" onchange="updateComparison()">
+                    <option>Loading...</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;" class="analytics-grid">
+        
+        <div class="sidebar-card" style="min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <h3 style="width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px;">Attribute Radar</h3>
+            <div style="position: relative; height: 350px; width: 100%;">
+                <canvas id="compareChart"></canvas>
+            </div>
+        </div>
+
+        <div class="sidebar-card">
+            <h3 style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px;">The Numbers</h3>
+            
+            <div id="stats-table-container">
+                <div class="stat-row">
+                    <span class="p1-val">--</span>
+                    <span class="stat-label">Select Players</span>
+                    <span class="p2-val">--</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: rgba(74, 222, 128, 0.1); border-radius: 12px; border: 1px solid var(--accent); text-align: center;">
+                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent);">ScoreSync Prediction</div>
+                <div id="prediction-text" style="font-size: 1.2rem; font-weight: 800; margin-top: 5px;">Analyzing Data...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* CSS FIX: Explicitly handle Dropdown Visibility */
+    .compare-select {
+        width: 100%;
+        padding: 12px;
+        background: #0f172a; /* Dark Background */
+        color: #ffffff;      /* White Text */
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        outline: none;
+        text-align: center;
+        font-weight: 700;
+        cursor: pointer;
+        appearance: none;    /* Standardizes look across browsers */
+        -webkit-appearance: none; 
+    }
+    .compare-select:focus { border-color: var(--accent); }
+
+    .stat-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .stat-label { font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; }
+    .p1-val { color: #3b82f6; font-weight: 700; font-size: 1.1rem; }
+    .p2-val { color: #ef4444; font-weight: 700; font-size: 1.1rem; }
+
+    @media (max-width: 768px) {
+        .analytics-grid { grid-template-columns: 1fr; }
+    }
+</style>

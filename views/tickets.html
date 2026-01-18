@@ -1,0 +1,54 @@
+<style>
+    /* Apply premium scrollbar to BOTH the Sports List and Ticket Container */
+    #sportCategories::-webkit-scrollbar, #ticketContainer::-webkit-scrollbar {
+        width: 6px; /* Thin scrollbar */
+    }
+    #sportCategories::-webkit-scrollbar-track, #ticketContainer::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05); /* Dark track */
+        border-radius: 4px;
+    }
+    #sportCategories::-webkit-scrollbar-thumb, #ticketContainer::-webkit-scrollbar-thumb {
+        background: #4ade80; /* ScoreSync Green Thumb */
+        border-radius: 4px;
+    }
+    #sportCategories, #ticketContainer {
+        scrollbar-width: thin; /* Firefox support */
+        scrollbar-color: #4ade80 rgba(255, 255, 255, 0.05);
+    }
+</style>
+
+<div class="container">
+    <div class="ticket-layout">
+        
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>Sports Categories</h3>
+                <ul class="sport-list" id="sportCategories" style="max-height: 450px; overflow-y: auto; padding-right: 5px;"></ul>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3>Advanced Filters</h3>
+                <div class="filter-group">
+                    <label>Max Price</label>
+                    <input type="range" id="priceFilter" class="price-slider" min="50" max="500" step="10" value="500">
+                    <div class="price-display">$<span id="priceVal">500</span></div>
+                </div>
+                <div class="filter-group">
+                    <label>Event Date</label>
+                    <input type="date" id="dateFilter" class="date-input">
+                </div>
+                <button type="button" class="btn-outline full-width" style="margin-top:10px; font-size:0.75rem;" id="btn-reset-filters">Reset All Filters</button>
+            </div>
+        </aside>
+        
+        <div class="tickets-content">
+            <div class="search-wrap">
+                <input type="text" class="search-input" id="ticketSearch" placeholder="Search teams, players, or stadium...">
+                <button type="button" class="btn-primary" id="btn-search-tickets">Search</button>
+            </div>
+            <h2 class="section-title">Trending Events</h2>
+            
+            <div id="ticketContainer" style="max-height: 75vh; overflow-y: auto; padding-right: 10px;"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScoreSync | Ultimate Sports Hub</title>
+    
+    <link rel="icon" type="image/png" href="assets/image/logo1.png">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/views.css?v=2">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+    <div id="teamDetailsModal" class="modal-overlay" onclick="closeTeamDetails(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-close" onclick="document.getElementById('teamDetailsModal').style.display='none'">&times;</div>
+            <div class="modal-header">
+                <h2 id="modalTeamName">Team Name</h2>
+                <p id="modalTeamCategory" style="color:var(--accent); font-weight:700; font-size:0.8rem; text-transform:uppercase;"></p>
+            </div>
+            <div class="modal-body">
+                <h3 style="font-size:1rem; margin-bottom:20px; color:var(--text-secondary);">Roster & Performance</h3>
+                <div id="rosterList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="streamPaymentModal" class="modal-overlay" onclick="closeStreamPayment(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-close" onclick="document.getElementById('streamPaymentModal').style.display='none'">&times;</div>
+            <div class="modal-header">
+                <h2 id="streamModalTitle">Unlock Stream</h2>
+                <p id="streamModalPrice" style="color:var(--premium-gold); font-weight:700; font-size:1.1rem;"></p>
+            </div>
+            <div class="modal-body">
+                <div id="streamRedemptionUI" class="redemption-panel" style="display:none; margin-bottom: 20px;">
+                    <div>
+                        <span class="pts-available" id="streamFanPointsText">0 Fan Points</span>
+                        <p style="font-size:0.7rem; color:var(--text-secondary);">Redeem for $2.00 off</p>
+                    </div>
+                    <button class="btn-outline" style="padding: 5px 15px; font-size: 0.7rem;" id="btn-redeem-stream">Redeem</button>
+                </div>
+                <p style="margin-bottom:25px; font-size:0.9rem; color:var(--text-secondary);">Unlock full 4K coverage by selecting a payment method below.</p>
+                <div class="payment-methods" style="margin-bottom:30px;">
+                    <div class="method-option selected" id="m-stream-upi" onclick="selectStreamPayment('upi', this)"><div class="method-icon">⚡</div><span class="method-label">UPI</span></div>
+                    <div class="method-option" id="m-stream-card" onclick="selectStreamPayment('card', this)"><div class="method-icon">💳</div><span class="method-label">Card</span></div>
+                    <div class="method-option" id="m-stream-netbank" onclick="selectStreamPayment('netbank', this)"><div class="method-icon">🏦</div><span class="method-label">Net Banking</span></div>
+                </div>
+                <div id="stream-form-upi" class="payment-form active">
+                    <div class="form-group"><label>UPI ID (VPA)</label><input type="text" placeholder="username@upi"></div>
+                </div>
+                <div id="stream-form-card" class="payment-form">
+                    <div class="form-group"><label>Card Number</label><input type="text" placeholder="XXXX XXXX XXXX XXXX"></div>
+                    <div class="form-row-2">
+                        <div class="form-group"><label>Expiry</label><input type="text" placeholder="MM/YY"></div>
+                        <div class="form-group"><label>CVV</label><input type="password" placeholder="***"></div>
+                    </div>
+                </div>
+                <div id="stream-form-netbank" class="payment-form">
+                    <div class="form-group">
+                        <label>Select Bank</label>
+                        <select><option>HDFC Bank</option><option>ICICI Bank</option><option>SBI</option><option>Axis Bank</option></select>
+                    </div>
+                </div>
+                <button class="btn-primary full-width" onclick="confirmStreamPayment()">Complete Payment & Watch</button>
+                <p style="text-align:center; font-size:0.7rem; color:var(--text-secondary); margin-top:15px; opacity:0.6;">Securely processed by ScoreSync Global Payments</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal-overlay" onclick="this.style.display='none'">
+        <div class="modal-card" onclick="event.stopPropagation()" style="max-width: 600px;">
+            <div class="modal-close" onclick="document.getElementById('termsModal').style.display='none'">&times;</div>
+            <div class="modal-header">
+                <h2>Terms & Conditions</h2>
+            </div>
+            <div class="modal-body" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary);">
+                <p style="margin-bottom: 15px;">Welcome to ScoreSync. By using our platform, you agree to the following:</p>
+                <ul style="list-style: disc; padding-left: 20px; margin-bottom: 15px;">
+                    <li>Tickets are non-refundable 24 hours prior to the event.</li>
+                    <li>Digital stream access is for personal, non-commercial use only.</li>
+                    <li>User accounts found sharing login credentials will be suspended.</li>
+                    <li>Fan Points hold no real-world cash value and are for platform rewards only.</li>
+                </ul>
+                <p>ScoreSync reserves the right to modify these terms at any time.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal-overlay" onclick="this.style.display='none'">
+        <div class="modal-card" onclick="event.stopPropagation()" style="max-width: 600px;">
+            <div class="modal-close" onclick="document.getElementById('privacyModal').style.display='none'">&times;</div>
+            <div class="modal-header">
+                <h2>Privacy Policy</h2>
+            </div>
+            <div class="modal-body" style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary);">
+                <p style="margin-bottom: 15px;">Your privacy is our priority. ScoreSync Global handles data as follows:</p>
+                <ul style="list-style: disc; padding-left: 20px; margin-bottom: 15px;">
+                    <li>Personal data (Email, Name) is encrypted and never sold to third parties.</li>
+                    <li>Payment information is handled via secure, PCI-compliant gateways.</li>
+                    <li>Location data is used solely to provide relevant local match listings.</li>
+                    <li>Users can request full data deletion via the Profile settings at any time.</li>
+                </ul>
+                <p>We use industry-standard SSL encryption to protect your sync experience.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p class="loading-text">Processing...</p>
+    </div>
+
+    <nav class="navbar">
+        <div class="container navbar-inner">
+            <div class="logo" id="main-logo" style="cursor: pointer; display: flex; align-items: center; min-width: 220px;">
+                <img src="assets/image/logo1.png" 
+                     class="main-brand-logo-global" 
+                     style="height: 180px !important; width: auto !important; display: block;">
+            </div>
+
+            <ul class="nav-links">
+                <li><a id="nav-home" class="active">Home</a></li>
+                <li><a id="nav-tickets">Tickets</a></li>
+                <li><a id="nav-leagues">Standings</a></li>
+                
+                <li><a id="nav-compare" onclick="appShowView('compare')">Analytics</a></li>
+                
+                <li><a id="nav-streaming">Watch Live</a></li>
+                <li><a id="nav-fanzone">Fan Zone</a></li>
+                <li><a id="nav-livecenter">Live Center</a></li>
+            </ul>
+            
+            <div class="controls">
+                <button type="button" class="btn-primary" id="headerAuthBtn">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app-main"></main>
+
+    <footer style="padding: 40px 0; background: var(--bg-card); border-top: 1px solid var(--border); margin-top: 50px;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                &copy; 2026 <b>ScoreSync</b> Global. All rights reserved.
+            </div>
+            <div style="display: flex; gap: 25px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                <a onclick="document.getElementById('privacyModal').style.display='flex'" style="cursor: pointer; color: var(--text-secondary); transition: var(--transition);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">Privacy Policy</a>
+                <a onclick="document.getElementById('termsModal').style.display='flex'" style="cursor: pointer; color: var(--text-secondary); transition: var(--transition);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="msgBox" class="toast-message"></div>
+
+    <div id="syncbot-container">
+        <button id="syncbot-btn" class="animate-in" aria-label="Open AI Assistant">
+            🤖
+        </button>
+
+        <div id="syncbot-window" class="hidden">
+            <div class="chat-header">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div class="bot-avatar">🤖</div>
+                    <div>
+                        <h4 style="margin:0; font-size:1rem; color: #fff;">SyncBot AI</h4>
+                        <span style="font-size:0.7rem; color:#4ade80;">● Online</span>
+                    </div>
+                </div>
+                <button id="close-chat" aria-label="Close Chat">×</button>
+            </div>
+            
+            <div id="chat-messages">
+                <div class="message bot-msg">
+                    Hi there! I'm your <b>ScoreSync AI</b>. 🤖<br>Ask me about:
+                    <br>• Ticket Prices 🎟️
+                    <br>• Live Scores ⚽
+                    <br>• Match Schedules 📅
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                <button id="send-btn">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/slider.js"></script>
+    <script src="assets/js/tickets.js"></script>
+    <script src="assets/js/streaming.js"></script>
+    <script src="assets/js/livecenter.js"></script>
+    <script src="assets/js/fanzone.js"></script>
+    <script src="assets/js/profile.js"></script>
+    
+    <script src="assets/js/chatbot.js"></script>
+    
+    <script src="assets/js/compare.js"></script>
+
+    <script src="assets/js/app.js"></script>
+
+</body>
+</html>
